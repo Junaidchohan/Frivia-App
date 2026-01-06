@@ -20,12 +20,14 @@ A Flutter-based true or false trivia game using Open Trivia Database API.
 - Provider
 - Open Trivia DB API
 
-## Screenshots
+## 📸 Screenshots
 
-<p float="left">
-  <img src="screenshots/home.png" width="250" />
-  <img src="screenshots/game.png" width="250" />
-</p>
+### Home Screen
+<img src="assets/screenshots/home.png" width="250"/>
+
+### Game Screen
+<img src="assets/screenshots/game.png" width="250"/>
+
 
 ## Getting Started
 
