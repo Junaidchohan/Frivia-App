@@ -1,11 +1,11 @@
-# Frivia 🎮
+# Frivia App 🎮
 
-A Flutter based true or false trivia game using Open Trivia Database API.
+A Flutter-based true or false trivia game using Open Trivia Database API.
 
 ## Features
 
 - True or False quiz questions
-- Difficulty selection Easy Medium Hard
+- Difficulty selection: Easy, Medium, Hard
 - Live questions from OpenTDB API
 - Score tracking
 - Clean dark UI
@@ -80,7 +80,7 @@ This fixes that instantly.
 Add a short GIF demo later.
 That alone puts you above 80 percent of beginners.
 
-If you want, send your repo link and I will optimize your README for internship and freelance clients.
+If you want, send your repo link, and I will optimize your README for internship and freelance clients.
 
 
 
