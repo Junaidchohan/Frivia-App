@@ -75,7 +75,7 @@ class _GamePageState extends State<GamePage> {
 
   Widget trueButton() {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: () => gamePageProvider!.answerQuestion('True'),
       color: Colors.green,
       minWidth: deviceWidth! * 0.4,
       height: deviceHeight! * 0.06,
@@ -93,7 +93,7 @@ class _GamePageState extends State<GamePage> {
 
   Widget falseButton() {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: () => gamePageProvider!.answerQuestion('False'),
       color: Colors.red,
       minWidth: deviceWidth! * 0.4,
       height: deviceHeight! * 0.06,
