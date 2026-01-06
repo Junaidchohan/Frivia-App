@@ -2,16 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:frivia_app/provider/game_page_provider.dart';
 import 'package:provider/provider.dart';
 
-class GamePage extends StatefulWidget {
-  GamePage({super.key});
-
-  @override
-  State<GamePage> createState() => _GamePageState();
-}
-
-class _GamePageState extends State<GamePage> {
+// ignore: must_be_immutable
+class GamePage extends StatelessWidget {
+  GamePage({super.key, required this.difficulty});
+  final String difficulty;
   double? deviceHeight, deviceWidth;
-
   GamePageProvider? gamePageProvider;
 
   @override
@@ -19,7 +14,8 @@ class _GamePageState extends State<GamePage> {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
     return ChangeNotifierProvider(
-      create: (context) => GamePageProvider(context: context),
+      create: (context) =>
+          GamePageProvider(context: context, difficulty: difficulty),
       child: buildUI(),
     );
   }

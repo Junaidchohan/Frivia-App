@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class GamePageProvider with ChangeNotifier {
   final Dio dio = Dio();
   final int maxQuestions = 10;
+  final String difficulty;
 
   List? questions;
   int currentQuestionIndex = 0;
@@ -11,7 +12,7 @@ class GamePageProvider with ChangeNotifier {
 
   // Add your state variables and methods here to manage game state
   BuildContext? context;
-  GamePageProvider({required this.context}) {
+  GamePageProvider({required this.context, required this.difficulty}) {
     // Initialize any required data here
     dio.options.baseUrl = 'https://opentdb.com/';
     fetchQuestionFromAPI();
@@ -21,7 +22,11 @@ class GamePageProvider with ChangeNotifier {
     try {
       final response = await dio.get(
         'api.php',
-        queryParameters: {'amount': 1, 'type': 'boolean', 'difficulty': 'easy'},
+        queryParameters: {
+          'amount': maxQuestions,
+          'type': 'boolean',
+          'difficulty': difficulty,
+        },
       );
       if (response.statusCode == 200) {
         questions = response.data['results'];
@@ -99,5 +104,7 @@ class GamePageProvider with ChangeNotifier {
     await Future.delayed(Duration(seconds: 2));
     Navigator.of(context!).pop(); // Close the dialog
     currentQuestionIndex = 0;
+    correctAccount = 0;
+    notifyListeners();
   }
 }
