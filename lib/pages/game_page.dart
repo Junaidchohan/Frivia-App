@@ -1,25 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:frivia_app/provider/game_page_provider.dart';
+import 'package:provider/provider.dart';
 
-class GamePage extends StatelessWidget {
+class GamePage extends StatefulWidget {
   GamePage({super.key});
 
+  @override
+  State<GamePage> createState() => _GamePageState();
+}
+
+class _GamePageState extends State<GamePage> {
   double? deviceHeight, deviceWidth;
+
+  GamePageProvider? gamePageProvider;
 
   @override
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
-    return buildUI();
+    return ChangeNotifierProvider(
+      create: (context) => GamePageProvider(context: context),
+      child: buildUI(),
+    );
   }
 
   Widget buildUI() {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: deviceWidth! * 0.05),
-          child: gameUI(),
-        ),
-      ),
+    return Builder(
+      builder: (context) {
+        gamePageProvider = Provider.of<GamePageProvider>(context);
+        if (gamePageProvider!.questions != null) {
+          return Scaffold(
+            body: SafeArea(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: deviceWidth! * 0.05),
+                child: gameUI(),
+              ),
+            ),
+          );
+        } else {
+          return Scaffold(body: Center(child: CircularProgressIndicator()));
+        }
+      },
     );
   }
 
@@ -43,7 +64,7 @@ class GamePage extends StatelessWidget {
 
   Widget questionText() {
     return Text(
-      'Sample Question?',
+      gamePageProvider!.getCurrentQuestion().toString(),
       style: TextStyle(
         color: Colors.white,
         fontSize: 20,
